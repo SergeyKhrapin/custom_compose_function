@@ -1,3 +1,23 @@
+/*=================  Option 1  ======================*/
+
+function _compose(...functions) {
+  return (val) => functions.reverse().reduce((res, func) => func(res), val);
+}
+
+function add(n) {
+  return n + 2;
+}
+function multiply(n) {
+  return n * 2;
+}
+function sub(n) {
+  return n - 4;
+}
+
+console.log(_compose(add, multiply, sub)(10));
+
+/*=================  Option 2 (old)  ======================*/
+
 function f1 (resFromF2) {
     console.log('call f1() - ', resFromF2)
     return 'Result returned from f1()'
@@ -32,21 +52,3 @@ function compose() {
         return prevFuncResult
     }
 }
-
-/*=================  Option 2  ======================*/
-
-function _compose(...functions) {
-  return (val) => functions.reverse().reduce((res, func) => func(res), val);
-}
-
-function add(n) {
-  return n + 2;
-}
-function multiply(n) {
-  return n * 2;
-}
-function sub(n) {
-  return n - 4;
-}
-
-console.log(_compose(add, multiply, sub)(10));
